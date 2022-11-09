@@ -1,0 +1,17 @@
+type Query {
+  getUsers: [User]
+  getUser(id: ID!): User
+}
+type User {
+  id: ID!
+  email: String!
+}
+type AuthData {
+  token: String!
+}
+
+type Mutation {
+  login(email: String!, password: String!): AuthData
+  signup(email: String!, password: String!): AuthData
+  deleteUser(id: ID!): User
+}

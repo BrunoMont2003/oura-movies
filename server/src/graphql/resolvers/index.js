@@ -1,6 +1,12 @@
-import Query from './Query'
-import Mutation from './Mutation'
-export default {
-  Query,
-  Mutation
+import UserResolver from './user'
+
+const resolvers = {
+  Query: {
+    ...UserResolver.Query
+  },
+  Mutation: {
+    ...UserResolver.Mutation
+  }
 }
+
+export default resolvers
