@@ -6,6 +6,10 @@ const server = createServer({
   schema: {
     typeDefs: loadFilesSync(path.join(__dirname, './graphql/schema.graphql')),
     resolvers
+  },
+  maskedErrors: {
+    handleParseErrors: true,
+    handleValidationErrors: true
   }
 })
 

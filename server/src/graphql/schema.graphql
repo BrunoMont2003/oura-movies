@@ -1,3 +1,61 @@
-type Query{
-    hello: String
+type Query {
+  getUsers: [User]
+  getUser(id: ID!): User
+  getMoviesCatalog: [MovieCatalog]
+  getMovieCatalog(id: ID!): MovieCatalog
+}
+type User {
+  id: ID!
+  email: String!
+  password: String!
+}
+type MovieCatalog {
+  id: ID!
+  original_language: String!
+  original_title: String!
+  overview: String!
+  popularity: Float!
+  poster_path: String!
+  release_date: String!
+  title: String!
+  video: Boolean!
+  vote_average: Float!
+  vote_count: Int!
+  user: ID!
+}
+type AuthData {
+  token: String!
+}
+
+type Mutation {
+  login(email: String!, password: String!): AuthData
+  signup(email: String!, password: String!): AuthData
+  createCatalog(
+    original_language: String!
+    original_title: String!
+    overview: String!
+    popularity: Float!
+    poster_path: String!
+    release_date: String!
+    title: String!
+    video: Boolean!
+    vote_average: Float!
+    vote_count: Int!
+    user: ID!
+  ): MovieCatalog
+  updateCatalog(
+    id: ID!
+    original_language: String!
+    original_title: String!
+    overview: String!
+    popularity: Float!
+    poster_path: String!
+    release_date: String!
+    title: String!
+    video: Boolean!
+    vote_average: Float!
+    vote_count: Int!
+    user: ID!
+  ): MovieCatalog
+  deleteCatalog(id: ID!): MovieCatalog
 }
