@@ -14,6 +14,14 @@ const config = {
     token: {
       secret: process.env.TOKEN_SECRET
     }
+  },
+  external: {
+    api: {
+      tmdb: {
+        url: process.env.TMDB_API_URL,
+        key: process.env.TMDB_API_KEY
+      }
+    }
   }
 }
 export default config
