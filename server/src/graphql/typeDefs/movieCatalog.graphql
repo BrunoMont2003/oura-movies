@@ -1,5 +1,5 @@
 type Query {
-  getMoviesCatalog: [MovieCatalog]
+  getMovieCatalogs: [MovieCatalog]
   getMovieCatalog(id: ID!): MovieCatalog
 }
 type MovieCatalog {
@@ -14,36 +14,38 @@ type MovieCatalog {
   video: Boolean!
   vote_average: Float!
   vote_count: Int!
-  user: ID!
+  user_id: ID
+}
+
+input CreateMovieCatalogInput {
+  original_language: String!
+  original_title: String!
+  overview: String!
+  popularity: Float!
+  poster_path: String!
+  release_date: String!
+  title: String!
+  video: Boolean!
+  vote_average: Float!
+  vote_count: Int!
+  user_id: ID
+}
+
+input UpdateMovieCatalogInput {
+  original_language: String
+  original_title: String
+  overview: String
+  popularity: Float
+  poster_path: String
+  release_date: String
+  title: String
+  video: Boolean
+  vote_average: Float
+  vote_count: Int
 }
 
 type Mutation {
-  createCatalog(
-    original_language: String!
-    original_title: String!
-    overview: String!
-    popularity: Float!
-    poster_path: String!
-    release_date: String!
-    title: String!
-    video: Boolean!
-    vote_average: Float!
-    vote_count: Int!
-    user: ID!
-  ): MovieCatalog
-  updateCatalog(
-    id: ID!
-    original_language: String!
-    original_title: String!
-    overview: String!
-    popularity: Float!
-    poster_path: String!
-    release_date: String!
-    title: String!
-    video: Boolean!
-    vote_average: Float!
-    vote_count: Int!
-    user: ID!
-  ): MovieCatalog
-  deleteCatalog(id: ID!): MovieCatalog
+  addMovieCatalog(input: CreateMovieCatalogInput!): MovieCatalog
+  updateMovieCatalog(id: ID!, input: UpdateMovieCatalogInput!): MovieCatalog
+  deleteMovieCatalog(id: ID!): MovieCatalog
 }

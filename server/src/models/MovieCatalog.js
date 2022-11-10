@@ -29,6 +29,10 @@ const movieCatalogSchema = new Schema({
     type: String,
     required: true
   },
+  video: {
+    type: Boolean,
+    required: true
+  },
   vote_average: {
     type: Number,
     required: true
@@ -37,7 +41,7 @@ const movieCatalogSchema = new Schema({
     type: Number,
     required: true
   },
-  user: {
+  user_id: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   }

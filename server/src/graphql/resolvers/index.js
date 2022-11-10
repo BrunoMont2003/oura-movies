@@ -1,11 +1,13 @@
 import UserResolver from './user'
-
+import MovieCatalogResolver from './moviecatalog'
 const resolvers = {
   Query: {
-    ...UserResolver.Query
+    ...UserResolver.Query,
+    ...MovieCatalogResolver.Query
   },
   Mutation: {
-    ...UserResolver.Mutation
+    ...UserResolver.Mutation,
+    ...MovieCatalogResolver.Mutation
   }
 }
 
