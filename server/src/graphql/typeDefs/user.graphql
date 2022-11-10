@@ -4,6 +4,7 @@ type Query {
 }
 type User {
   id: ID!
+  name: String!
   email: String!
 }
 type AuthData {
@@ -12,6 +13,6 @@ type AuthData {
 
 type Mutation {
   login(email: String!, password: String!): AuthData
-  signup(email: String!, password: String!): AuthData
+  signup(name: String!, email: String!, password: String!): AuthData
   deleteUser(id: ID!): User
 }
