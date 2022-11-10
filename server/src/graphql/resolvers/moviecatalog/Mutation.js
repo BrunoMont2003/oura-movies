@@ -1,17 +1,16 @@
 /* eslint-disable camelcase */
 import { GraphQLYogaError } from '@graphql-yoga/node'
 import MovieCatalog from '../../../models/MovieCatalog'
-import User from '../../../models/User'
 
 const MovieCatalogMutations = {
-  addMovieCatalog: async (_, { input }) => {
-    console.log('addMovieCatalog input:', input)
-    const user = await User.findById(input.user_id)
-    if (input.user_id && !user) {
-      throw new GraphQLYogaError('User not found')
+  addMovieCatalog: async (_, { input }, { currentUser }) => {
+    const userId = currentUser ? currentUser.id : null
+    if (!userId) {
+      throw new GraphQLYogaError('Not authenticated')
     }
     const movieCatalog = new MovieCatalog({
-      ...input
+      ...input,
+      user_id: userId
     })
     try {
       await movieCatalog.save()
@@ -20,9 +19,14 @@ const MovieCatalogMutations = {
     }
     return movieCatalog
   },
-  updateMovieCatalog: async (_, { id, input }) => {
+  updateMovieCatalog: async (_, { id, input }, { currentUser }) => {
+    const userId = currentUser ? currentUser.id : null
+    if (!userId) {
+      throw new GraphQLYogaError('Not authenticated')
+    }
     const movieCatalog = await MovieCatalog.findById({
-      _id: id
+      _id: id,
+      user_id: userId
     })
     if (!movieCatalog) {
       throw new GraphQLYogaError('MovieCatalog not found')
