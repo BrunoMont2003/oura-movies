@@ -13,13 +13,8 @@ const server = createServer({
   context: async ({ request }) => {
     const token = request ? request.headers.get('authorization') : null
     if (token) {
-      try {
-        const user = await decodeTokenAndGetUser(token)
-        return { currentUser: user }
-      } catch (e) {
-        console.log(e.message)
-        return { user: null }
-      }
+      const user = await decodeTokenAndGetUser(token)
+      return { currentUser: user }
     }
   },
 
