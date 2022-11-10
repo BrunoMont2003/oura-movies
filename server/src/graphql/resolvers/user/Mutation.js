@@ -21,19 +21,22 @@ const userMutations = {
       token: jwt.encode(payload, config.security.token.secret)
     }
   },
-  async signup (_, { email, password }) {
+  async signup (_, { name, email, password }) {
     const user = await User.findOne({ email })
     if (user) {
       throw new GraphQLYogaError('Email in use')
     }
-    const encriptedPass = bcrypt.hashSync(
-      password,
-      10
-    )
-    const newUser = await new User({
+    const encriptedPass = bcrypt.hashSync(password, 10)
+    const newUser = new User({
       email,
+      name,
       password: encriptedPass
-    }).save()
+    })
+    try {
+      newUser.save()
+    } catch (error) {
+      throw new GraphQLYogaError('Error creating user')
+    }
     const payload = {
       id: newUser.id,
       email: newUser.email
