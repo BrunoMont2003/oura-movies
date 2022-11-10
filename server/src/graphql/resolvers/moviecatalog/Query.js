@@ -1,7 +1,8 @@
 import MovieCatalog from '../../../models/MovieCatalog'
 
 const MovieCatalogQueries = {
-  getMovieCatalogs: async () => {
+  getMovieCatalogs: async (root, args, context) => {
+    console.log('context', context.currentUser)
     const movieCatalogs = await MovieCatalog.find()
     return movieCatalogs
   },
