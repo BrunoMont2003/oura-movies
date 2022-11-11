@@ -1,13 +1,13 @@
 import { createServer } from '@graphql-yoga/node'
-import { loadFilesSync } from '@graphql-tools/load-files'
-import path from 'path'
 import resolvers from './graphql/resolvers/'
+import { loadSchemaSync } from '@graphql-tools/load'
+import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
 import { decodeTokenAndGetUser } from './helpers/token'
 const server = createServer({
   schema: {
-    typeDefs: loadFilesSync(
-      path.join(__dirname, './graphql/typeDefs/*.graphql')
-    ),
+    typeDefs: loadSchemaSync('./src/**/*.graphql', {
+      loaders: [new GraphQLFileLoader()]
+    }),
     resolvers
   },
   context: async ({ request }) => {
