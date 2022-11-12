@@ -4,14 +4,18 @@ const ENDPOINT = `${config.external.api.tmdb.url}/movie/top_rated?api_key=${conf
 
 const getMoviesFromTMDB = async (numberOfMovies = 30) => {
   const movies = []
-  const response = await fetch(ENDPOINT)
-  const { page, results } = await response.json()
-  movies.push(...results)
   let i = 1
   while (movies.length < numberOfMovies) {
-    const response = await fetch(`${ENDPOINT}&page=${page + i}`)
+    const response = await fetch(`${ENDPOINT}&page=${i}`)
     const { results } = await response.json()
-    movies.push(...results)
+    for (const movie of results) {
+      const { poster_path: posterPath } = movie
+      const poster = `${config.external.api.tmdb.image_url}${posterPath}`
+      movies.push({
+        ...movie,
+        poster_path: poster
+      })
+    }
     i++
   }
   movies.splice(numberOfMovies)

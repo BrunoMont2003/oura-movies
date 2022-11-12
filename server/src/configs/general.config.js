@@ -19,7 +19,8 @@ const config = {
     api: {
       tmdb: {
         url: process.env.TMDB_API_URL,
-        key: process.env.TMDB_API_KEY
+        key: process.env.TMDB_API_KEY,
+        image_url: process.env.TMDB_IMAGE_URL
       }
     }
   }
