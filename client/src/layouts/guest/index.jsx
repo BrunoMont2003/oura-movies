@@ -6,7 +6,7 @@ function GuestLayout ({ children }) {
     <div className='min-h-screen bg-neutral-800 bg-opacity-80'>
       <GuestNavbar />
       <GuestBg />
-      <main className='min-h-screen w-screen'>{children}</main>
+      <main className='min-h-screen w-screen flex items-center justify-center'>{children}</main>
     </div>
   )
 }
