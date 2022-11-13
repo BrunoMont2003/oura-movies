@@ -3,7 +3,8 @@ import { model, Schema } from 'mongoose'
 const movieCatalogSchema = new Schema({
   original_language: {
     type: String,
-    required: true
+    required: true,
+    match: /^[a-z]{2}$/
   },
   original_title: {
     type: String,
@@ -11,7 +12,8 @@ const movieCatalogSchema = new Schema({
   },
   overview: {
     type: String,
-    required: true
+    required: true,
+    minLength: 50
   },
   popularity: {
     type: Number,
@@ -19,11 +21,14 @@ const movieCatalogSchema = new Schema({
   },
   poster_path: {
     type: String,
-    required: true
+    required: true,
+    match: /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg)$/
   },
   release_date: {
-    type: String,
-    required: true
+    type: Date,
+    required: true,
+    min: '1900-01-01',
+    max: Date.now
   },
   title: {
     type: String,
@@ -31,7 +36,7 @@ const movieCatalogSchema = new Schema({
   },
   video: {
     type: Boolean,
-    required: true
+    default: false
   },
   vote_average: {
     type: Number,
@@ -39,7 +44,7 @@ const movieCatalogSchema = new Schema({
   },
   vote_count: {
     type: Number,
-    required: true
+    default: 0
   },
   user_id: {
     type: Schema.Types.ObjectId,

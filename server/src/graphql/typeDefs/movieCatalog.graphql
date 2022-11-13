@@ -1,6 +1,7 @@
 type Query {
   getMovieCatalogs: [MovieCatalog]
   getMovieCatalog(id: ID!): MovieCatalog
+  getFavoriteMovies: [MovieCatalog]
 }
 type MovieCatalog {
   id: ID!
@@ -48,4 +49,6 @@ type Mutation {
   addMovieCatalog(input: CreateMovieCatalogInput!): MovieCatalog
   updateMovieCatalog(id: ID!, input: UpdateMovieCatalogInput!): MovieCatalog
   deleteMovieCatalog(id: ID!): MovieCatalog
+  addFavoriteMovie(movie_id: ID!): User
+  removeFavoriteMovie(movie_id: ID!): User
 }
