@@ -7,12 +7,20 @@ function GuestNavbar () {
       <Logo />
       <ul className='flex gap-5'>
         <li className='inline-block'>
-          <Button isLink color='neutral' to='/login'>
+          <Button
+            isLink
+            className='opacity-80 px-4 py-2 text-sm font-medium text-neutral-100 bg-neutral-400 bg-opacity-30 hover:bg-opacity-40 hover:opacity-100 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ease-in-out duration-200 md:text-xl'
+            to='/login'
+          >
             Log In
           </Button>
         </li>
         <li className='inline-block'>
-          <Button isLink color='teal' to='/signup'>
+          <Button
+            isLink
+            className='opacity-80 px-4 py-2 text-sm font-medium text-neutral-100 bg-teal-400 bg-opacity-30 hover:bg-opacity-40 hover:opacity-100 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 ease-in-out duration-200 md:text-xl'
+            to='/signup'
+          >
             Sign Up
           </Button>
         </li>
