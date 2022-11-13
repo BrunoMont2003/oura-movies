@@ -16,6 +16,10 @@ const userQueries = {
     } else {
       throw new GraphQLYogaError('User not found')
     }
+  },
+  me: async (_, __, { currentUser }) => {
+    if (currentUser) return currentUser
+    return new GraphQLYogaError('Not authenticated')
   }
 }
 
