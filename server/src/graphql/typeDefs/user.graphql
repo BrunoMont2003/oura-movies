@@ -6,6 +6,7 @@ type User {
   id: ID!
   name: String!
   email: String!
+  favorites_movies: [MovieCatalog]
 }
 type AuthData {
   token: String!
