@@ -1,5 +1,7 @@
+import GuestLayout from '../../layouts/guest'
+
 function Home() {
-  return <div>Home</div>
+  return <GuestLayout />
 }
 
 export default Home
