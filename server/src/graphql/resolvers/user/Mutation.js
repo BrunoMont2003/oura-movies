@@ -51,6 +51,8 @@ const userMutations = {
       throw new GraphQLYogaError('User not found')
     }
     await User.findByIdAndDelete(id)
+      .select('-password')
+      .populate('favorites_movies')
     return user
   }
 }
