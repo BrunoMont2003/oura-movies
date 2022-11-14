@@ -4,9 +4,16 @@ import { useQuery } from '@apollo/client'
 import Button from '../Button'
 import { InfoCircledIcon } from '@radix-ui/react-icons'
 import LikeButton from '../LikeButton'
+import Spinner from '../Spinner'
 function MainMovieBanner () {
   const { loading, error, data } = useQuery(GET_MOVIES)
-  if (loading) return <p>Loading...</p>
+  if (loading) {
+    return (
+      <div className='min-h-[80vh] w-full flex items-center justify-center bg-neutral-900'>
+        <Spinner />
+      </div>
+    )
+  }
   if (error) return <p>Error :(</p>
   const randomMovie =
     data.getMovieCatalogs[
@@ -15,19 +22,18 @@ function MainMovieBanner () {
   return (
     <>
       <div
-        style={
-        {
+        style={{
           backgroundImage: `url(${randomMovie.poster_path})`
-        }
-      } className='absolute top-0 bg-black  w-full min-h-[600px] max-h-[80vh] -z-10 bg-movie'
+        }}
+        className='absolute top-0 bg-black  w-full min-h-[600px] max-h-[80vh] -z-10 bg-movie'
       />
       <div className='relative w-full min-h-[600px] max-h-[80vh] '>
         <div className='max-w-[300px] min-w-[200px] lg:max-w-[400px] flex flex-col gap-2  absolute top-1/4 left-5 lg:left-16'>
           <h1 className='font-bold text-5xl mb-5'>{randomMovie.title}</h1>
           <p>
-            {
-              randomMovie.overview.length > 100 ? randomMovie.overview.slice(0, 100) + '...' : randomMovie.overview
-            }
+            {randomMovie.overview.length > 100
+              ? randomMovie.overview.slice(0, 100) + '...'
+              : randomMovie.overview}
           </p>
           <div className='flex gap-1'>
             <LikeButton />

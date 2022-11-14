@@ -1,6 +1,7 @@
 import { GET_MOVIES } from '../../graphql/queries/movies'
 import { useQuery } from '@apollo/client'
 import MovieCard from '../MovieCard'
+import Spinner from '../Spinner'
 
 function Popular () {
   const { loading, error, data } = useQuery(GET_MOVIES)
@@ -10,7 +11,9 @@ function Popular () {
       <section className='flex gap-2 overflow-x-scroll overflow-y-visible py-5'>
         {loading
           ? (
-            <p>Loading...</p>
+            <div className='min-h-[300px] w-full flex items-center justify-center bg-neutral-900'>
+              <Spinner />
+            </div>
             )
           : error
             ? (
