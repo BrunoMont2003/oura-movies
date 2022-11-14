@@ -60,6 +60,13 @@ const MovieCatalogQueries = {
     }).sort({ vote_count: -1, release_date: -1 })
 
     return movies
+  },
+  isFavoriteMovie: async (_, { id }, { currentUser }) => {
+    const userId = currentUser ? currentUser.id : null
+    if (!userId) {
+      throw new GraphQLYogaError('Not authenticated')
+    }
+    return currentUser.favorites_movies.includes(id)
   }
 }
 
