@@ -1,14 +1,13 @@
 import { Formik, Field, Form as Formk } from 'formik'
-import SignupSchema from '../../validation/signup'
 
-function Form ({ initialValues = {}, onSubmit, inputs = [] }) {
+function Form ({ initialValues = {}, onSubmit, inputs = [], validationSchema }) {
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => {
         onSubmit(values)
       }}
-      validationSchema={SignupSchema}
+      validationSchema={validationSchema}
     >
       {({ errors, touched }) => (
         <Formk className='grid md:grid-cols-2 gap-5'>
