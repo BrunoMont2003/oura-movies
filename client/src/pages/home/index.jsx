@@ -12,7 +12,7 @@ function Home () {
     return (
       <AuthenticatedLayout>
         <MainMovieBanner />
-        <div className='bg-neutral-900'>
+        <div className='main-bg'>
           <Popular />
           <TrendingNow />
           <TopRated />
