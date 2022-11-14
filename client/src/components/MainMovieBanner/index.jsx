@@ -33,7 +33,7 @@ function MainMovieBanner () {
         }}
         className='absolute top-0 bg-black  w-full min-h-[600px] max-h-[80vh] -z-10 bg-movie'
       />
-      <div className='relative w-full min-h-[600px] max-h-[80vh] flex items-end justify-center py-10'>
+      <div className='relative w-full min-h-[600px] max-h-[80vh] flex items-end justify-center py-10 px-10'>
         <div className='max-w-[500px] min-w-[200px] lg:max-w-[400px] flex flex-col gap-2  absolute lg:bottom-1/4  lg:left-16'>
           <h1 className='font-bold text-5xl mb-5'>{randomMovie.title}</h1>
           <p>
