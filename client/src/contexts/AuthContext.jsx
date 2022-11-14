@@ -12,14 +12,15 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = window.localStorage.getItem('token')
     if (token) {
-      setIsAuth(true)
       fetchUser()
+      setIsAuth(true)
     }
-  }, [])
+  }, [data])
 
   const loginUser = (token) => {
     window.localStorage.setItem('token', token)
     setIsAuth(true)
+    fetchUser()
   }
 
   const logoutUser = () => {
@@ -35,7 +36,9 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuth, loginUser, logoutUser }}>
+    <AuthContext.Provider
+      value={{ user, isAuth, loginUser, logoutUser, setUser }}
+    >
       {children}
     </AuthContext.Provider>
   )
