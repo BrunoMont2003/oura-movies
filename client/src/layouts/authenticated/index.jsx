@@ -1,10 +1,11 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
 
-function AuthenticatedLayout () {
+function AuthenticatedLayout ({ children }) {
   return (
-    <div className='min-h-screen bg-neutral-500 w-full text-white relative'>
+    <div className='min-h-screen w-full text-white relative'>
       <Navbar />
+      {children}
     </div>
   )
 }

@@ -1,0 +1,22 @@
+.card-movie-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 300px;
+  min-width: 200px;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+.card-movie-bg:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.card-movie-menu {
+  opacity: 0;
+  transition: all ease-in-out .5s;
+}
+
+.card-movie-bg:hover > .card-movie-menu {
+  opacity: 1;
+}
