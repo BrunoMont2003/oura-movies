@@ -6,6 +6,7 @@ import { SIGN_UP } from '../../../graphql/mutations/users'
 import { useAuthContext } from '../../../contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import SignupSchema from '../../../validation/signup'
 function SignUp () {
   const [signup] = useMutation(SIGN_UP)
   const { loginUser } = useAuthContext()
@@ -82,6 +83,7 @@ function SignUp () {
           onSubmit={(e) => {
             handleSubmit(e)
           }}
+          validationSchema={SignupSchema}
         />
         <p>
           Already have an account?{' '}
