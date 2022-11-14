@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import './style.css'
-function Logo () {
+function Logo ({ className }) {
   return (
-    <div>
+    <div className={className}>
       <Link className='logo' to='/'>
         Oura
       </Link>

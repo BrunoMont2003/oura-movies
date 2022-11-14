@@ -1,0 +1,31 @@
+/* reset */
+button {
+  all: unset;
+}
+
+.menu-toggle {
+  background-color: #474545;
+  color: white;
+  height: 35px;
+  width: 35px;
+  border-radius: 4px;
+  display: flex;
+  font-size: 15px;
+  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.menu-toggle:hover {
+  opacity: 1;
+}
+.menu-toggle[data-state='on'] {
+  background-color: #474545;
+  color: #fff;
+  opacity: 1;
+}
+.menu-toggle[data-state='on']:hover {
+  opacity: 0.8;
+}

@@ -1,14 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
-function Button ({ isLink, color = 'neutral', children, ...props }) {
-  return isLink
-    ? (
-      <Link {...props}>{children}</Link>
-      )
-    : (
-      <button {...props}>{children}</button>
-      )
+function Button ({ isLink, isNavLink, children, ...props }) {
+  if (isLink) {
+    return <Link {...props}>{children}</Link>
+  }
+  if (isNavLink) {
+    return <NavLink {...props}>{children}</NavLink>
+  }
+  return <button {...props}>{children}</button>
 }
 
 export default Button
