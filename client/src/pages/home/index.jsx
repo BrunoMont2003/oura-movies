@@ -4,13 +4,19 @@ import { useAuthContext } from '../../contexts/AuthContext'
 import AuthenticatedLayout from '../../layouts/authenticated'
 import MainMovieBanner from '../../components/MainMovieBanner'
 import Popular from '../../components/Popular'
+import TrendingNow from '../../components/TrendingNow'
+import TopRated from '../../components/TopRated'
 function Home () {
   const { isAuth } = useAuthContext()
   if (isAuth) {
     return (
       <AuthenticatedLayout>
         <MainMovieBanner />
-        <Popular />
+        <div className='bg-neutral-900'>
+          <Popular />
+          <TrendingNow />
+          <TopRated />
+        </div>
       </AuthenticatedLayout>
     )
   }
