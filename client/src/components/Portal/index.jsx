@@ -3,8 +3,8 @@ import Button from '../Button'
 function Portal () {
   return (
     <div className='flex items-center justify-center min-h-screen'>
-      <div className='max-w-[700px] flex flex-col gap-5'>
-        <h1 className='text-5xl md:text-7xl  text-white text-center main-title '>
+      <div className='max-w-[700px] my-56 flex flex-col gap-5'>
+        <h1 className='text-3xl mx-5 sm:text-5xl md:text-7xl  text-white text-center main-title '>
           Manage your movies and vote for your favorites
         </h1>
         <div className='flex justify-center'>

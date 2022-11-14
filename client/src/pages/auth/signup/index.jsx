@@ -40,7 +40,7 @@ function SignUp () {
 
   return (
     <GuestLayout>
-      <section className='bg-neutral-900 min-h-screen w-full p-5 md:py-24 sm:p-10 flex items-center justify-center text-white flex-col gap-5 bg-opacity-60'>
+      <section className='bg-neutral-900 py-56 min-h-screen w-full p-5 md:py-24 sm:p-10 flex items-center justify-center text-white flex-col gap-5 bg-opacity-60'>
         <h1 className='text-4xl font-bold mb-5'>Sign Up</h1>
         <Form
           initialValues={{
