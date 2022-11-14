@@ -21,7 +21,7 @@ const NavItems = [
 function Navbar () {
   return (
     <>
-      <div className='hidden h-24 absolute top-0 w-full md:flex items-center lg:justify-center justify-around'>
+      <div className='hidden h-24 absolute top-0 w-full md:flex items-center lg:justify-center justify-around z-20'>
         <Logo className='lg:absolute top-2 left-16' />
         <nav className='bg-neutral-900 bg-opacity-70 rounded h-10 flex items-center justify-center'>
           <ul className='flex font-bold  lg:gap-12'>

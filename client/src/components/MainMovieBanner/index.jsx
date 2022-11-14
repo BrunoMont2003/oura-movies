@@ -14,7 +14,7 @@ function MainMovieBanner () {
       </div>
     )
   }
-  if (error) return <p>Error :(</p>
+  if (error) return <div className='min-h-[80vh] bg-neutral-800 flex items-center justify-center'>Something went Wrong</div>
   const randomMovie =
     data.getMovieCatalogs[
       Math.floor(Math.random() * data.getMovieCatalogs.length)

@@ -27,7 +27,7 @@ function GuestBg () {
     )
   }
 
-  if (error) return <div>Error</div>
+  if (error) return <div>Something went Wrong</div>
   const { getMovieCatalogs: movies } = data
   const posters = movies.map(({ poster_path: poster }) => poster)
   const randomPosters = getSomeRandomElements(posters, 30)
