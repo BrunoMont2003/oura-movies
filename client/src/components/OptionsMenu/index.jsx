@@ -5,7 +5,6 @@ import { useAuthContext } from '../../contexts/AuthContext'
 
 const OptionsMenu = () => {
   const { user, logoutUser } = useAuthContext()
-  console.log(user)
 
   return (
     <DropdownMenu.Root>
