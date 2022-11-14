@@ -7,6 +7,7 @@ import {
   ADD_FAVORITE_MOVIE,
   REMOVE_FAVORITE_MOVIE
 } from '../../graphql/mutations/movies'
+import { toast } from 'react-toastify'
 
 const LikeButton = ({ movie = {} }) => {
   const { data: isFavoriteMovieData } = useQuery(IS_FAVORITE_MOVIE, {
@@ -28,13 +29,31 @@ const LikeButton = ({ movie = {} }) => {
     }
   }, [isFavoriteMovieData])
 
-  const handleToggle = () => {
-    if (isFavorite) {
-      removeFavoriteMovie()
-    } else {
-      addFavoriteMovie()
-    }
+  const handleToggle = async () => {
     setIsFavorite(!isFavorite)
+    try {
+      if (isFavorite) {
+        await removeFavoriteMovie(
+          {},
+          {
+            onError: (error) => {
+              toast(error.message, { type: 'warning', autoClose: 3000 })
+            }
+          }
+        )
+      } else {
+        await addFavoriteMovie(
+          {},
+          {
+            onError: (error) => {
+              toast(error.message, { type: 'warning', autoClose: 3000 })
+            }
+          }
+        )
+      }
+    } catch (error) {
+      toast(error.message, { type: 'warning', autoClose: 3000 })
+    }
   }
   return (
     <Toggle.Root
