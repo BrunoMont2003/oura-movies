@@ -79,3 +79,9 @@ export const GET_TOP_RATED = gql`
     }
   }
 `
+
+export const IS_FAVORITE_MOVIE = gql`
+  query isFavoriteMovie($id: ID!) {
+    isFavoriteMovie(id: $id)
+  }
+`

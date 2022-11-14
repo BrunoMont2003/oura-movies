@@ -14,7 +14,13 @@ function MainMovieBanner () {
       </div>
     )
   }
-  if (error) return <div className='min-h-[80vh] bg-neutral-800 flex items-center justify-center'>Something went Wrong</div>
+  if (error) {
+    return (
+      <div className='min-h-[80vh] bg-neutral-800 flex items-center justify-center'>
+        Something went Wrong
+      </div>
+    )
+  }
   const randomMovie =
     data.getMovieCatalogs[
       Math.floor(Math.random() * data.getMovieCatalogs.length)
@@ -36,7 +42,7 @@ function MainMovieBanner () {
               : randomMovie.overview}
           </p>
           <div className='flex gap-1'>
-            <LikeButton />
+            <LikeButton movie={randomMovie} />
             <Button className='p-3 cursor-pointer bg-teal-400 bg-opacity-50 rounded flex items-center gap-2'>
               More Info
               <InfoCircledIcon />
