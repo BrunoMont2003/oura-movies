@@ -6,14 +6,8 @@ import Spinner from '../Spinner'
 import { useEffect, useState } from 'react'
 function GuestBg () {
   const { data, error, loading } = useQuery(GET_POSTERS)
-  const [isFirstRender, setIsFirstRender] = useState(true)
-  const [bgHeight, setBgHeight] = useState(0)
+  const [bgHeight, setBgHeight] = useState('100vh')
   useEffect(() => {
-    if (isFirstRender) {
-      setBgHeight(document.body.clientHeight / 2)
-      setIsFirstRender(false)
-    }
-
     const handleResize = () => {
       setBgHeight(document.body.clientHeight)
     }
