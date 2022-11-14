@@ -1,7 +1,7 @@
 import { GET_POPULAR_MOVIES } from '../../graphql/queries/movies'
 import { useQuery } from '@apollo/client'
 import MovieCard from '../MovieCard'
-import Spinner from '../Spinner'
+import Spinner from '../common/Spinner'
 
 function Popular () {
   const { loading, error, data } = useQuery(GET_POPULAR_MOVIES)

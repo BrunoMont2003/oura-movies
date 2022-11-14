@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
-import Button from '../Button'
-import Logo from '../Logo'
+import Button from '../common/Button'
+import Logo from '../common/Logo'
 import OptionsMenu from '../OptionsMenu'
 import MobileNavbar from '../MobileNavbar'
 const NavItems = [

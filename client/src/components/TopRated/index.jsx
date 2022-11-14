@@ -1,7 +1,7 @@
 import { GET_TOP_RATED } from '../../graphql/queries/movies'
 import { useQuery } from '@apollo/client'
 import MovieCard from '../MovieCard'
-import Spinner from '../Spinner'
+import Spinner from '../common/Spinner'
 
 function TopRated () {
   const { loading, error, data } = useQuery(GET_TOP_RATED)

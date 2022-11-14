@@ -2,7 +2,7 @@ import './style.css'
 import { useQuery } from '@apollo/client'
 import { GET_POSTERS } from '../../graphql/queries/movies'
 import { getSomeRandomElements } from '../../helpers/array'
-import Spinner from '../Spinner'
+import Spinner from '../common/Spinner'
 import { useEffect, useState } from 'react'
 function GuestBg () {
   const { data, error, loading } = useQuery(GET_POSTERS)

@@ -1,10 +1,10 @@
 import './style.css'
 import { GET_MOVIES } from '../../graphql/queries/movies'
 import { useQuery } from '@apollo/client'
-import Button from '../Button'
+import Button from '../common/Button'
 import { InfoCircledIcon } from '@radix-ui/react-icons'
 import LikeButton from '../LikeButton'
-import Spinner from '../Spinner'
+import Spinner from '../common/Spinner'
 function MainMovieBanner () {
   const { loading, error, data } = useQuery(GET_MOVIES)
   if (loading) {

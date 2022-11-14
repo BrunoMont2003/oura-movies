@@ -1,5 +1,5 @@
-import Button from '../../../components/Button'
-import Form from '../../../components/Form'
+import Button from '../../../components/common/Button'
+import Form from '../../../components/common/Form'
 import GuestLayout from '../../../layouts/guest'
 import { useMutation } from '@apollo/client'
 import { SIGN_UP } from '../../../graphql/mutations/users'

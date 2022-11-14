@@ -1,5 +1,5 @@
 import './style.css'
-import Button from '../Button'
+import Button from '../common/Button'
 function Portal () {
   return (
     <div className='flex items-center justify-center min-h-screen'>

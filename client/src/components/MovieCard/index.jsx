@@ -1,6 +1,6 @@
 import './style.css'
 import LikeButton from '../LikeButton'
-import Button from '../Button'
+import Button from '../common/Button'
 import { InfoCircledIcon } from '@radix-ui/react-icons'
 function MovieCard ({ movie }) {
   return (

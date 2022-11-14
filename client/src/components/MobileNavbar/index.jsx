@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import MobileNavItem from '../MobileNavItem'
-import Logo from '../Logo'
-import MenuToggle from '../MenuBar'
+import Logo from '../common/Logo'
+import MenuToggle from '../common/MenuBar'
 
 function MobileNavbar ({ navItems }) {
   const [isOpen, setIsOpen] = useState(false)
