@@ -2,7 +2,10 @@ import { useQuery, useMutation } from '@apollo/client'
 import { HeartIcon, HeartFilledIcon } from '@radix-ui/react-icons'
 import * as Toggle from '@radix-ui/react-toggle'
 import { useEffect, useState } from 'react'
-import { IS_FAVORITE_MOVIE } from '../../graphql/queries/movies'
+import {
+  GET_FAVORITE_MOVIES,
+  IS_FAVORITE_MOVIE
+} from '../../graphql/queries/movies'
 import {
   ADD_FAVORITE_MOVIE,
   REMOVE_FAVORITE_MOVIE
@@ -23,6 +26,16 @@ const LikeButton = ({ movie = {} }) => {
     variables: { movieId: movie.id }
   })
 
+  const queriesToRefetch = [
+    {
+      query: GET_FAVORITE_MOVIES
+    },
+    {
+      query: IS_FAVORITE_MOVIE,
+      variables: { id: movie.id }
+    }
+  ]
+
   useEffect(() => {
     if (isFavoriteMovieData) {
       setIsFavorite(isFavoriteMovieData.isFavoriteMovie)
@@ -33,25 +46,33 @@ const LikeButton = ({ movie = {} }) => {
     setIsFavorite(!isFavorite)
     try {
       if (isFavorite) {
-        await removeFavoriteMovie(
-          {},
-          {
-            onError: (error) => {
-              toast(error.message, { type: 'warning', autoClose: 3000 })
-            }
+        await removeFavoriteMovie({
+          refetchQueries: [...queriesToRefetch],
+          onCompleted: () => {
+            toast.success('Movie removed from favorites', {
+              autoClose: 3000
+            })
+          },
+          onError: (error) => {
+            toast(error.message, { type: 'warning', autoClose: 3000 })
           }
-        )
+        })
       } else {
-        await addFavoriteMovie(
-          {},
-          {
-            onError: (error) => {
-              toast(error.message, { type: 'warning', autoClose: 3000 })
-            }
+        await addFavoriteMovie({
+          refetchQueries: [...queriesToRefetch],
+          onCompleted: () => {
+            // console.log('onCompleted', e)
+            toast.success('Movie added to favorites', {
+              autoClose: 3000
+            })
+          },
+          onError: (error) => {
+            toast(error.message, { type: 'warning', autoClose: 3000 })
           }
-        )
+        })
       }
     } catch (error) {
+      console.log(error)
       toast(error.message, { type: 'warning', autoClose: 3000 })
     }
   }
@@ -59,8 +80,8 @@ const LikeButton = ({ movie = {} }) => {
     <Toggle.Root
       className='p-3  bg-red-800 rounded cursor-pointer'
       aria-label='Like Toggle'
-      onPressedChange={() => {
-        handleToggle()
+      onPressedChange={async () => {
+        await handleToggle()
       }}
     >
       {isFavorite ? <HeartFilledIcon /> : <HeartIcon />}
