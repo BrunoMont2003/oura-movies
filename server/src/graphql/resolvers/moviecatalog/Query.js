@@ -13,8 +13,6 @@ const MovieCatalogQueries = {
     return movieCatalogs
   },
   getMovieCatalog: async (_, { id }, { currentUser }) => {
-    console.log('id', id)
-    console.log('currentUser', currentUser)
     const userId = currentUser ? currentUser.id : null
     const movieCatalog = await MovieCatalog.findOne({
       _id: id,
