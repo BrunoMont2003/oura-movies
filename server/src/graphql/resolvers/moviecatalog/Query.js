@@ -13,12 +13,14 @@ const MovieCatalogQueries = {
     return movieCatalogs
   },
   getMovieCatalog: async (_, { id }, { currentUser }) => {
-    const movieCatalog = await MovieCatalog.findById({
-      id,
-      user_id: {
-        $in: [currentUser.id, null]
-      }
+    console.log('id', id)
+    console.log('currentUser', currentUser)
+    const userId = currentUser ? currentUser.id : null
+    const movieCatalog = await MovieCatalog.findOne({
+      _id: id,
+      user_id: userId
     })
+    console.log('movieCatalog', movieCatalog)
     return movieCatalog
   },
   getFavoriteMovies: async (_, args, { currentUser }) => {
