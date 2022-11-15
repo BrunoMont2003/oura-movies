@@ -1,0 +1,22 @@
+.logo{
+    background: #7C9BCF;
+    background: linear-gradient(to right, #7C9BCF 0%, #29CF66 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    font-size: 2rem;
+    font-variant: small-caps;
+    font-weight: bolder;
+}
+@media screen and (min-width: 768px){
+    .logo{
+        font-size: 3rem;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .logo{
+        font-size: 3.5rem;
+    }
+    
+}

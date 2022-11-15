@@ -2,6 +2,10 @@ type Query {
   getMovieCatalogs: [MovieCatalog]
   getMovieCatalog(id: ID!): MovieCatalog
   getFavoriteMovies: [MovieCatalog]
+  getPopularMovies: [MovieCatalog]
+  getTrendingNowMovies: [MovieCatalog]
+  getTopRatedMovies: [MovieCatalog]
+  isFavoriteMovie(id: ID!): Boolean!
 }
 type MovieCatalog {
   id: ID!

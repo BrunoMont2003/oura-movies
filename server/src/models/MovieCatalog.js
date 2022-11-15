@@ -25,10 +25,9 @@ const movieCatalogSchema = new Schema({
     match: /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg)$/
   },
   release_date: {
-    type: Date,
+    type: String,
     required: true,
-    min: '1900-01-01',
-    max: Date.now
+    match: /^\d{4}-\d{2}-\d{2}$/
   },
   title: {
     type: String,

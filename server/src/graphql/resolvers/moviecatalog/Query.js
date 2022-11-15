@@ -13,12 +13,12 @@ const MovieCatalogQueries = {
     return movieCatalogs
   },
   getMovieCatalog: async (_, { id }, { currentUser }) => {
-    const movieCatalog = await MovieCatalog.findById({
-      id,
-      user_id: {
-        $in: [currentUser.id, null]
-      }
+    const userId = currentUser ? currentUser.id : null
+    const movieCatalog = await MovieCatalog.findOne({
+      _id: id,
+      user_id: userId
     })
+    console.log('movieCatalog', movieCatalog)
     return movieCatalog
   },
   getFavoriteMovies: async (_, args, { currentUser }) => {
@@ -30,6 +30,43 @@ const MovieCatalogQueries = {
       .select('-password')
       .populate('favorites_movies')
     return user.favorites_movies
+  },
+  getPopularMovies: async (_, args, { currentUser }) => {
+    const userId = currentUser ? currentUser.id : null
+    const movies = await MovieCatalog.find({
+      user_id: {
+        $in: [userId, null]
+      }
+    }).sort({ popularity: -1 })
+
+    return movies
+  },
+  getTopRatedMovies: async (_, args, { currentUser }) => {
+    const userId = currentUser ? currentUser.id : null
+    const movies = await MovieCatalog.find({
+      user_id: {
+        $in: [userId, null]
+      }
+    }).sort({ vote_average: -1 })
+
+    return movies
+  },
+  getTrendingNowMovies: async (_, args, { currentUser }) => {
+    const userId = currentUser ? currentUser.id : null
+    const movies = await MovieCatalog.find({
+      user_id: {
+        $in: [userId, null]
+      }
+    }).sort({ vote_count: -1, release_date: -1 })
+
+    return movies
+  },
+  isFavoriteMovie: async (_, { id }, { currentUser }) => {
+    const userId = currentUser ? currentUser.id : null
+    if (!userId) {
+      throw new GraphQLYogaError('Not authenticated')
+    }
+    return currentUser.favorites_movies.includes(id)
   }
 }
 
