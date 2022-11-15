@@ -85,3 +85,21 @@ export const IS_FAVORITE_MOVIE = gql`
     isFavoriteMovie(id: $id)
   }
 `
+
+export const GET_FAVORITE_MOVIES = gql`
+  query favoriteMovies {
+    getFavoriteMovies {
+      id
+      original_language
+      original_title
+      overview
+      popularity
+      poster_path
+      release_date
+      title
+      video
+      vote_average
+      vote_count
+    }
+  }
+`
