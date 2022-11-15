@@ -4,11 +4,16 @@ import EditMovie from '../pages/movies/edit'
 import ErrorPage from '../pages/error'
 import Login from '../pages/auth/login'
 import SignUp from '../pages/auth/signup'
+import Favorites from '../pages/favorites'
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
     errorElement: <ErrorPage />
+  },
+  {
+    path: '/favorites',
+    element: <Favorites />
   },
   {
     path: '/movies/:id/edit',
