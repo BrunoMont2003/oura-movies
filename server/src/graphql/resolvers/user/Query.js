@@ -1,5 +1,7 @@
 import { GraphQLYogaError } from '@graphql-yoga/node'
 import User from '../../../models/User'
+import jwt from 'jwt-simple'
+import config from '../../../configs/general.config'
 const userQueries = {
   getUsers: async () => {
     const users = await User.find()
@@ -17,9 +19,14 @@ const userQueries = {
       throw new GraphQLYogaError('User not found')
     }
   },
-  me: async (_, __, { currentUser }) => {
-    if (currentUser) return currentUser
-    return new GraphQLYogaError('Not authenticated')
+  me: async (_, { token }) => {
+    try {
+      const { id } = jwt.decode(token, config.security.token.secret)
+      const user = await User.findById(id)
+      return user
+    } catch (err) {
+      throw new GraphQLYogaError('Invalid token')
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react'
-import { useQuery } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client'
 import GET_ME from '../graphql/queries/users'
 
 export const AuthContext = createContext()
@@ -7,12 +7,11 @@ export const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false)
   const [user, setUser] = useState(null)
-  const { data } = useQuery(GET_ME)
-
+  const [getMe, { data }] = useLazyQuery(GET_ME)
   useEffect(() => {
     const token = window.localStorage.getItem('token')
     if (token) {
-      fetchUser()
+      fetchUser(token)
       setIsAuth(true)
     }
   }, [data])
@@ -20,7 +19,7 @@ export const AuthProvider = ({ children }) => {
   const loginUser = (token) => {
     window.localStorage.setItem('token', token)
     setIsAuth(true)
-    fetchUser()
+    fetchUser(token)
   }
 
   const logoutUser = () => {
@@ -29,7 +28,12 @@ export const AuthProvider = ({ children }) => {
     setIsAuth(false)
   }
 
-  const fetchUser = () => {
+  const fetchUser = (token) => {
+    getMe({
+      variables: {
+        token
+      }
+    })
     if (data) {
       setUser(data.me)
     }
