@@ -10,7 +10,6 @@ function GuestBg () {
   useEffect(() => {
     const handleResize = () => {
       setBgHeight(document.body.clientHeight)
-      console.log('resize')
     }
     window.addEventListener('resize', handleResize)
 

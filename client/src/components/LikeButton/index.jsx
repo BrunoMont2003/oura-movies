@@ -61,7 +61,6 @@ const LikeButton = ({ movie = {} }) => {
         await addFavoriteMovie({
           refetchQueries: [...queriesToRefetch],
           onCompleted: () => {
-            // console.log('onCompleted', e)
             toast.success('Movie added to favorites', {
               autoClose: 3000
             })
@@ -72,7 +71,6 @@ const LikeButton = ({ movie = {} }) => {
         })
       }
     } catch (error) {
-      console.log(error)
       toast(error.message, { type: 'warning', autoClose: 3000 })
     }
   }
