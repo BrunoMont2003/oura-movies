@@ -10,8 +10,8 @@ function GuestBg () {
   useEffect(() => {
     const handleResize = () => {
       setBgHeight(document.body.clientHeight)
+      console.log('resize')
     }
-
     window.addEventListener('resize', handleResize)
 
     return () => {
@@ -21,7 +21,7 @@ function GuestBg () {
 
   if (loading) {
     return (
-      <div className='min-h-screen w-full flex items-center justify-center'>
+      <div className='min-h-screen  w-full flex items-center justify-center'>
         <Spinner />
       </div>
     )
@@ -30,10 +30,10 @@ function GuestBg () {
   if (error) return <div>Something went Wrong</div>
   const { getMovieCatalogs: movies } = data
   const posters = movies.map(({ poster_path: poster }) => poster)
-  const randomPosters = getSomeRandomElements(posters, 30)
+  const randomPosters = getSomeRandomElements(posters, 160)
   return (
     <div
-      className='bg-neutral-800 guest-bg flex flex-wrap overflow-x-hidden -z-10 items-center justify-center'
+      className='bg-neutral-800 guest-bg grid grid-cols-4 md:grid-cols-7 lg:grid-cols-8 xl:flex xl:flex-wrap overflow-x-hidden -z-10 justify-between '
       style={{
         height: bgHeight
       }}
