@@ -1,0 +1,33 @@
+.search-bar-container{
+    /* box-shadow: 0 0 2px 0 rgba(255, 255, 255, 0.9); */
+}
+
+.search-bar:focus{
+    border-bottom: .1px solid #2bce68;
+}
+
+.search-bar{
+    transition: all ease-in-out .3s;
+    display: block;
+
+}
+
+.search-bar-icon{
+    transition: all ease-in-out .3s;
+}
+
+.search-bar:focus{
+    outline: none;
+    padding-left: 1.25rem;
+}
+.search-bar:focus + .search-bar-icon{
+    left: -16px;
+}
+.search-bar-button{
+    background-color: rgb(43, 206, 104, .7) ;
+}
+
+
+.search-bar:focus + .search-bar-button{
+    opacity: 1;
+}
