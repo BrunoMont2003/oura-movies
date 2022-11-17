@@ -10,7 +10,7 @@ function Home () {
   const { isAuth } = useAuthContext()
   if (isAuth) {
     return (
-      <AuthenticatedLayout>
+      <AuthenticatedLayout withBg={false}>
         <MainMovieBanner />
         <div className='main-bg'>
           <Popular />
