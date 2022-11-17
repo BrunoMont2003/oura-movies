@@ -5,6 +5,7 @@ import ErrorPage from '../pages/error'
 import Login from '../pages/auth/login'
 import SignUp from '../pages/auth/signup'
 import Favorites from '../pages/favorites'
+import Search from '../pages/search'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: '/signup',
     element: <SignUp />
+  },
+  {
+    path: '/search',
+    element: <Search />
   },
   {
     path: '*',

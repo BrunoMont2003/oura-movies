@@ -8,7 +8,7 @@ function Favorites () {
 
   return (
     <AuthenticatedLayout>
-      <section className='bg-neutral-900 w-full min-h-screen pt-36 pb-12 flex flex-col items-center'>
+      <section className='w-full  flex flex-col items-center'>
         <h2 className='text-4xl mb-5 font-bold'>Favorites</h2>
         {loading
           ? (
@@ -24,7 +24,7 @@ function Favorites () {
               )
             : data.getFavoriteMovies.length
               ? (
-                <div className='flex flex-wrap gap-10 pt-12 px-5 lg:px-16'>
+                <div className='flex flex-wrap justify-center items-center gap-10 pt-12 px-5 lg:px-16'>
                   {data.getFavoriteMovies.map((movie) => (
                     <MovieCard key={movie.id} movie={movie} />
                   ))}

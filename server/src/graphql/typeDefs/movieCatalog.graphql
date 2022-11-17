@@ -6,6 +6,7 @@ type Query {
   getTrendingNowMovies: [MovieCatalog]
   getTopRatedMovies: [MovieCatalog]
   isFavoriteMovie(id: ID!): Boolean!
+  searchMovies(query: String!): [MovieCatalog]
 }
 type MovieCatalog {
   id: ID!
