@@ -67,6 +67,19 @@ const MovieCatalogQueries = {
       throw new GraphQLYogaError('Not authenticated')
     }
     return currentUser.favorites_movies.includes(id)
+  },
+  searchMovies: async (_, { query }, { currentUser }) => {
+    const userId = currentUser ? currentUser.id : null
+    const movies = await MovieCatalog.find({
+      user_id: {
+        $in: [userId, null]
+      },
+      title: {
+        $regex: query,
+        $options: 'i'
+      }
+    })
+    return movies
   }
 }
 
