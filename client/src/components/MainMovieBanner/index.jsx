@@ -43,7 +43,11 @@ function MainMovieBanner () {
           </p>
           <div className='flex gap-1'>
             <LikeButton movie={randomMovie} />
-            <Button className='p-3 cursor-pointer bg-teal-400 bg-opacity-50 rounded flex items-center gap-2'>
+            <Button
+              isLink
+              to={`/movies/${randomMovie.id}`}
+              className='p-3 cursor-pointer bg-teal-400 bg-opacity-50 rounded flex items-center gap-2'
+            >
               More Info
               <InfoCircledIcon />
             </Button>

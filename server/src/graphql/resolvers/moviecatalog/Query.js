@@ -16,9 +16,10 @@ const MovieCatalogQueries = {
     const userId = currentUser ? currentUser.id : null
     const movieCatalog = await MovieCatalog.findOne({
       _id: id,
-      user_id: userId
+      user_id: {
+        $in: [userId, null]
+      }
     })
-    console.log('movieCatalog', movieCatalog)
     return movieCatalog
   },
   getFavoriteMovies: async (_, args, { currentUser }) => {
