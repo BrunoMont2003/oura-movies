@@ -24,7 +24,11 @@ function MovieSection ({ movie = {} }) {
           <RatingCircle rate={movie.vote_average} />
           <span className='font-bold text-md max-w-[3rem]'>User Score</span>
           <LikeButton movie={movie} className='rounded-full bg-slate-700 p-4 bg-opacity-70' />
-          <Button className='rounded-full bg-slate-700 p-4 bg-opacity-70 text-white'>
+          <Button
+            className='rounded-full bg-slate-700 p-4 bg-opacity-70 text-white'
+            isLink
+            to={`/movies/${movie.id}/edit`}
+          >
             <Pencil1Icon className='w-[15px] h-[15px]' />
           </Button>
         </div>
