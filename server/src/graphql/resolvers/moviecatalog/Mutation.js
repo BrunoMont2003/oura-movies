@@ -24,9 +24,11 @@ const MovieCatalogMutations = {
     if (!userId) {
       throw new GraphQLYogaError('Not authenticated')
     }
-    const movieCatalog = await MovieCatalog.findById({
+    const movieCatalog = await MovieCatalog.findOne({
       _id: id,
-      user_id: userId
+      user_id: {
+        $in: [userId, null]
+      }
     })
     if (!movieCatalog) {
       throw new GraphQLYogaError('MovieCatalog not found')
@@ -44,9 +46,11 @@ const MovieCatalogMutations = {
     if (!userId) {
       throw new GraphQLYogaError('Not authenticated')
     }
-    const movieCatalog = await MovieCatalog.findByIdAndDelete({
+    const movieCatalog = await MovieCatalog.findOneAndDelete({
       _id: id,
-      user_id: userId
+      user_id: {
+        $in: [userId, null]
+      }
     })
     if (!movieCatalog) {
       throw new GraphQLYogaError('Movie Catalog not found')

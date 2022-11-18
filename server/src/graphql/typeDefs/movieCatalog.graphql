@@ -31,9 +31,9 @@ input CreateMovieCatalogInput {
   poster_path: String!
   release_date: String!
   title: String!
-  video: Boolean!
+  video: Boolean
   vote_average: Float!
-  vote_count: Int!
+  vote_count: Int
   user_id: ID
 }
 
