@@ -12,7 +12,7 @@ import {
 } from '../../graphql/mutations/movies'
 import { toast } from 'react-toastify'
 
-const LikeButton = ({ movie = {} }) => {
+const LikeButton = ({ movie = {}, className = 'p-3  bg-red-800 rounded cursor-pointer' }) => {
   const { data: isFavoriteMovieData } = useQuery(IS_FAVORITE_MOVIE, {
     variables: { id: movie.id }
   })
@@ -76,7 +76,7 @@ const LikeButton = ({ movie = {} }) => {
   }
   return (
     <Toggle.Root
-      className='p-3  bg-red-800 rounded cursor-pointer'
+      className={className}
       aria-label='Like Toggle'
       onPressedChange={async () => {
         await handleToggle()
