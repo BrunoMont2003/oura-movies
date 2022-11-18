@@ -1,19 +1,21 @@
 import { gql } from '@apollo/client'
 
-export const ADD_MOVIE = gql`
-  mutation addMovie(
-    $original_language: String!
-    $original_title: String!
-    $overview: String!
-    $popularity: Float!
-    $poster_path: String!
-    $release_date: String!
-    $title: String!
-    $video: Boolean!
-    $vote_average: Float!
-    $vote_count: Int!
+export const UPDATE_MOVIE = gql`
+  mutation updateMovie(
+    $id: ID!
+    $original_language: String
+    $original_title: String
+    $overview: String
+    $popularity: Float
+    $poster_path: String
+    $release_date: String
+    $title: String
+    $video: Boolean
+    $vote_average: Float
+    $vote_count: Int
   ) {
-    addMovieCatalog(
+    updateMovieCatalog(
+      id: $id
       input: {
         original_language: $original_language
         original_title: $original_title
@@ -28,16 +30,7 @@ export const ADD_MOVIE = gql`
       }
     ) {
       id
-      original_language
-      original_title
-      overview
-      popularity
-      poster_path
-      release_date
       title
-      video
-      vote_average
-      vote_count
     }
   }
 `
