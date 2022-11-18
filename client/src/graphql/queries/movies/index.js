@@ -121,3 +121,20 @@ export const SEARCH_MOVIES = gql`
     }
   }
 `
+export const GET_MOVIE = gql`
+  query movie ($id: ID!) {
+    getMovieCatalog (id: $id) {
+      id
+      original_language
+      original_title
+      overview
+      popularity
+      poster_path
+      release_date
+      title
+      video
+      vote_average
+      vote_count
+    }
+  }
+`

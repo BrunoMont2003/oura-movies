@@ -6,6 +6,7 @@ import Login from '../pages/auth/login'
 import SignUp from '../pages/auth/signup'
 import Favorites from '../pages/favorites'
 import Search from '../pages/search'
+import Movie from '../pages/movies'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/favorites',
     element: <Favorites />
+  },
+  {
+    path: '/movies/:id',
+    element: <Movie />
   },
   {
     path: '/movies/:id/edit',
