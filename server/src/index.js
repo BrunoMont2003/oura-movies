@@ -5,9 +5,6 @@ import seed from './seed'
 
 connect()
 seed()
-server.start(
-  {
-    port: config.server.port
-  },
-  ({ port }) => console.log(`Server is running on http://localhost:${port}`)
-)
+server.listen(config.server.port, () => {
+  console.log(`Server is running on port ${config.server.port}`)
+})
