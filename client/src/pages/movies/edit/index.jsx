@@ -12,6 +12,7 @@ import ErrorMessage from '../../../components/common/Error'
 import Form from '../../../components/common/Form'
 import { UPDATE_MOVIE } from '../../../graphql/mutations/movies'
 import { toast } from 'react-toastify'
+import UpdateMovieSchema from '../../../validation/movies/update-movie'
 function EditMovie () {
   const { id } = useParams()
   const { data, loading, error } = useQuery(GET_MOVIE, {
@@ -125,11 +126,14 @@ function EditMovie () {
       {data && (
         <div className='flex flex-col gap-5 items-center'>
           <h1 className='text-3xl font-bold'>Edit Movie</h1>
-          <h2 className='text-xl font-light text-center'>{data.getMovieCatalog.title}</h2>
+          <h2 className='text-xl font-light text-center'>
+            {data.getMovieCatalog.title}
+          </h2>
           <Form
             inputs={inputs}
             initialValues={initialValues}
             onSubmit={handleSubmit}
+            validationSchema={UpdateMovieSchema}
           />
         </div>
       )}
