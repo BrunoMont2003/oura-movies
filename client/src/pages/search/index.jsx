@@ -26,7 +26,7 @@ function Search () {
   }
   return (
     <AuthenticatedLayout>
-      <section className='flex flex-col gap-5'>
+      <section className='flex flex-col gap-5 items-center'>
         <h2 className='text-center mb-5 text-3xl font-bold'>
           Find out any movie
         </h2>
