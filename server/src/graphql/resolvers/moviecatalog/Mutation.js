@@ -4,13 +4,9 @@ import MovieCatalog from '../../../models/MovieCatalog'
 
 const MovieCatalogMutations = {
   addMovieCatalog: async (_, { input }, { currentUser }) => {
-    const userId = currentUser ? currentUser.id : null
-    if (!userId) {
-      throw new GraphQLError('Not authenticated')
-    }
     const movieCatalog = new MovieCatalog({
       ...input,
-      user_id: userId
+      user_id: currentUser.id
     })
     try {
       await movieCatalog.save()
@@ -20,14 +16,10 @@ const MovieCatalogMutations = {
     return movieCatalog
   },
   updateMovieCatalog: async (_, { id, input }, { currentUser }) => {
-    const userId = currentUser ? currentUser.id : null
-    if (!userId) {
-      throw new GraphQLError('Not authenticated')
-    }
     const movieCatalog = await MovieCatalog.findOne({
       _id: id,
       user_id: {
-        $in: [userId, null]
+        $in: [currentUser.id, null]
       }
     })
     if (!movieCatalog) {
@@ -42,14 +34,10 @@ const MovieCatalogMutations = {
     return movieCatalog
   },
   deleteMovieCatalog: async (_, { id }, { currentUser }) => {
-    const userId = currentUser ? currentUser.id : null
-    if (!userId) {
-      throw new GraphQLError('Not authenticated')
-    }
     const movieCatalog = await MovieCatalog.findOneAndDelete({
       _id: id,
       user_id: {
-        $in: [userId, null]
+        $in: [currentUser.id, null]
       }
     })
     if (!movieCatalog) {
@@ -58,10 +46,6 @@ const MovieCatalogMutations = {
     return movieCatalog
   },
   addFavoriteMovie: async (_, { movie_id: id }, { currentUser }) => {
-    const userId = currentUser ? currentUser.id : null
-    if (!userId) {
-      throw new GraphQLError('Not authenticated')
-    }
     const movieCatalog = await MovieCatalog.findById(id)
     if (!movieCatalog) {
       throw new GraphQLError('Movie Catalog not found')
@@ -80,10 +64,6 @@ const MovieCatalogMutations = {
     }
   },
   removeFavoriteMovie: async (_, { movie_id: id }, { currentUser }) => {
-    const userId = currentUser ? currentUser.id : null
-    if (!userId) {
-      throw new GraphQLError('Not authenticated')
-    }
     const movieCatalog = await MovieCatalog.findById(id)
     if (!movieCatalog) {
       throw new GraphQLError('Movie Catalog not found')
