@@ -12,7 +12,12 @@ function Form ({ initialValues = {}, onSubmit, inputs = [], validationSchema }) 
       {({ errors, touched }) => (
         <Formk className='grid md:grid-cols-2 gap-5'>
           {inputs.map((input, index) => (
-            <div key={index} className={`flex flex-col gap-2 ${input.as === 'textarea' ? 'col-span-full' : ''}`}>
+            <div
+              key={index}
+              className={`flex flex-col gap-2 ${
+                input.as === 'textarea' ? 'col-span-full' : ''
+              }`}
+            >
               <label htmlFor={input.name} key={index}>
                 {input.label}
               </label>
@@ -21,7 +26,9 @@ function Form ({ initialValues = {}, onSubmit, inputs = [], validationSchema }) 
                 name={input.name}
                 type={input.type}
                 placeholder={input.placeholder}
-                className={`bg-transparent border border-white rounded p-5 h-16 border-opacity-50 focus:outline-none focus:border-opacity-100 ${input.as === 'textarea' ? 'h-32' : ''}`}
+                className={`bg-transparent border border-white rounded p-5 h-16 border-opacity-50 focus:outline-none focus:border-opacity-100 ${
+                  input.as === 'textarea' ? 'h-32' : ''
+                }`}
                 required={input.required}
                 as={input.as}
               />
