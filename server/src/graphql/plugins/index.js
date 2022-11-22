@@ -3,7 +3,9 @@ import {
   SignupValidator,
   LoginValidator,
   UserExists,
-  IsAuth
+  IsAuth,
+  CreateMovieValidator,
+  UpdateMovieValidator
 } from '../middlewares'
 
 const SchemaValidation = {
@@ -33,11 +35,19 @@ const IsAuthValidation = {
   }
 }
 
+const MovieCatalogValidation = {
+  Mutation: {
+    addMovieCatalog: CreateMovieValidator,
+    updateMovieCatalog: UpdateMovieValidator
+  }
+}
+
 const plugins = [
   useGraphQLMiddleware([
     SchemaValidation,
     UserExistsValidation,
-    IsAuthValidation
+    IsAuthValidation,
+    MovieCatalogValidation
   ])
 ]
 
