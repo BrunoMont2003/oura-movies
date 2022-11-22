@@ -75,7 +75,7 @@ function EditMovie () {
     {
       name: 'overview',
       label: 'Overview',
-      type: 'textarea',
+      as: 'textarea',
       placeholder: 'Enter overview'
     },
     {
@@ -125,7 +125,7 @@ function EditMovie () {
       {data && (
         <div className='flex flex-col gap-5 items-center'>
           <h1 className='text-3xl font-bold'>Edit Movie</h1>
-          <h2 className='text-xl font-light'>{data.getMovieCatalog.title}</h2>
+          <h2 className='text-xl font-light text-center'>{data.getMovieCatalog.title}</h2>
           <Form
             inputs={inputs}
             initialValues={initialValues}
