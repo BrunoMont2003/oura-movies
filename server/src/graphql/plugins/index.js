@@ -1,5 +1,10 @@
 import { useGraphQLMiddleware } from '@envelop/graphql-middleware'
-import { SignupValidator, LoginValidator, UserExists } from '../middlewares'
+import {
+  SignupValidator,
+  LoginValidator,
+  UserExists,
+  IsAuth
+} from '../middlewares'
 
 const SchemaValidation = {
   Mutation: {
@@ -14,6 +19,26 @@ const UserExistsValidation = {
   }
 }
 
-const plugins = [useGraphQLMiddleware([SchemaValidation, UserExistsValidation])]
+const IsAuthValidation = {
+  Mutation: {
+    addMovieCatalog: IsAuth,
+    updateMovieCatalog: IsAuth,
+    deleteMovieCatalog: IsAuth,
+    addFavoriteMovie: IsAuth,
+    removeFavoriteMovie: IsAuth
+  },
+  Query: {
+    getFavoriteMovies: IsAuth,
+    isFavoriteMovie: IsAuth
+  }
+}
+
+const plugins = [
+  useGraphQLMiddleware([
+    SchemaValidation,
+    UserExistsValidation,
+    IsAuthValidation
+  ])
+]
 
 export default plugins
