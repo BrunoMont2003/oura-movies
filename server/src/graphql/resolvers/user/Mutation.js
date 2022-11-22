@@ -22,10 +22,6 @@ const userMutations = {
     }
   },
   async signup (_, { name, email, password }) {
-    const user = await User.findOne({ email })
-    if (user) {
-      throw new GraphQLError('Email in use')
-    }
     const encriptedPass = bcrypt.hashSync(password, 10)
     const newUser = new User({
       email,
