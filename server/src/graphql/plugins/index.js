@@ -5,7 +5,8 @@ import {
   UserExists,
   IsAuth,
   CreateMovieValidator,
-  UpdateMovieValidator
+  UpdateMovieValidator,
+  UploadImage
 } from '../middlewares'
 
 const SchemaValidation = {
@@ -42,8 +43,16 @@ const MovieCatalogValidation = {
   }
 }
 
+const UploadFile = {
+  Mutation: {
+    addMovieCatalog: UploadImage,
+    updateMovieCatalog: UploadImage
+  }
+}
+
 const plugins = [
   useGraphQLMiddleware([
+    UploadFile,
     SchemaValidation,
     UserExistsValidation,
     IsAuthValidation,

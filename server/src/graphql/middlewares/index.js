@@ -4,6 +4,7 @@ import UserExists from './validation/auth/user-exists.validator'
 import IsAuth from './validation/auth/is-auth.validator'
 import CreateMovieValidator from './validation/movieCatalog/create-movie.validator'
 import UpdateMovieValidator from './validation/movieCatalog/update-movie.validator'
+import UploadImage from './upload-image'
 
 export {
   SignupValidator,
@@ -11,5 +12,6 @@ export {
   UserExists,
   IsAuth,
   CreateMovieValidator,
-  UpdateMovieValidator
+  UpdateMovieValidator,
+  UploadImage
 }
