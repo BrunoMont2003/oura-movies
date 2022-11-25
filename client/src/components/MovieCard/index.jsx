@@ -10,7 +10,7 @@ function MovieCard ({ movie }) {
       onClick={
       () => navigate(`/movies/${movie.id}`)
     }
-      className='card-movie-bg rounded flex items-end'
+      className='card-movie-bg rounded flex items-end max-w-[200px] max-h-[300px]'
       style={{
         backgroundImage: `url(${movie.poster_path})`
       }}
