@@ -1,11 +1,14 @@
 import { Formik, Field, Form as Formk } from 'formik'
-
+import InputImage from '../InputImage'
 function Form ({ initialValues = {}, onSubmit, inputs = [], validationSchema }) {
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => {
         onSubmit(values)
+      }}
+      validate={(values) => {
+        // console.log(values)
       }}
       validationSchema={validationSchema}
     >
@@ -15,7 +18,7 @@ function Form ({ initialValues = {}, onSubmit, inputs = [], validationSchema }) 
             <div
               key={index}
               className={`flex flex-col gap-2 ${
-                input.as === 'textarea' ? 'col-span-full' : ''
+                input.as === 'textarea' || input.isImage ? 'col-span-full' : ''
               }`}
             >
               <label htmlFor={input.name} key={index}>
@@ -31,6 +34,7 @@ function Form ({ initialValues = {}, onSubmit, inputs = [], validationSchema }) 
                 }`}
                 required={input.required}
                 as={input.as}
+                component={input.isImage ? InputImage : null}
               />
               {errors[input.name] && touched[input.name]
                 ? (
