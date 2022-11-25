@@ -21,6 +21,11 @@ const config = {
         url: process.env.TMDB_API_URL,
         key: process.env.TMDB_API_KEY,
         image_url: process.env.TMDB_IMAGE_URL
+      },
+      cloudinary: {
+        name: process.env.CLOUDINARY_CLOUD_NAME,
+        key: process.env.CLOUDINARY_API_KEY,
+        secret: process.env.CLOUDINARY_API_SECRET
       }
     }
   }
