@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import AuthenticatedLayout from '../../../layouts/authenticated'
 import {
   GET_MOVIE,
@@ -13,6 +13,7 @@ import Form from '../../../components/common/Form'
 import { UPDATE_MOVIE } from '../../../graphql/mutations/movies'
 import { toast } from 'react-toastify'
 import UpdateMovieSchema from '../../../validation/movies/update-movie'
+import DynamicImage from '../../../components/DynamicImage'
 function EditMovie () {
   const { id } = useParams()
   const { data, loading, error } = useQuery(GET_MOVIE, {
@@ -20,11 +21,13 @@ function EditMovie () {
       id
     }
   })
+  const navigate = useNavigate()
   const [updateMovie] = useMutation(UPDATE_MOVIE, {
     onCompleted: () => {
       toast.success('Movie updated successfully', {
         autoClose: 3000
       })
+      navigate('/')
     },
     onError: (e) => {
       console.error(e)
@@ -82,8 +85,8 @@ function EditMovie () {
     {
       name: 'poster_path',
       label: 'Poster Path',
-      type: 'text',
-      placeholder: 'Enter poster path'
+      placeholder: 'Enter poster path',
+      isImage: true
     },
     {
       name: 'vote_average',
@@ -124,17 +127,25 @@ function EditMovie () {
     <AuthenticatedLayout>
       {loading && <Spinner />}
       {data && (
-        <div className='flex flex-col gap-5 items-center'>
-          <h1 className='text-3xl font-bold'>Edit Movie</h1>
-          <h2 className='text-xl font-light text-center'>
-            {data.getMovieCatalog.title}
-          </h2>
-          <Form
-            inputs={inputs}
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
-            validationSchema={UpdateMovieSchema}
-          />
+        <div className='flex flex-col md:flex-row gap-5 justify-center'>
+          <div className='px-10 flex flex-col md:py-20 items-center md:max-w-[350px]'>
+            <h2 className='text-xl font-black text-lime-100 text-center mb-5'>
+              {data.getMovieCatalog.title}
+            </h2>
+            <DynamicImage
+              src={data.getMovieCatalog.poster_path}
+              alt={`${data.getMovieCatalog.title} poster`}
+            />
+          </div>
+          <div className='px-10'>
+            <h1 className='text-3xl font-bold text-center mb-10'>Edit Movie</h1>
+            <Form
+              inputs={inputs}
+              initialValues={initialValues}
+              onSubmit={handleSubmit}
+              validationSchema={UpdateMovieSchema}
+            />
+          </div>
         </div>
       )}
       {error && <ErrorMessage title='Movie not found' />}
