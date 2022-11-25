@@ -8,17 +8,20 @@ import 'react-toastify/dist/ReactToastify.css'
 import router from './router'
 import { AuthProvider } from './contexts/AuthContext'
 import { ToastContainer } from 'react-toastify'
+import { ImageProvider } from './contexts/ImageContext'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ApolloProvider client={client}>
       <AuthProvider>
-        <RouterProvider router={router} />
-        <ToastContainer
-          theme='dark'
-          closeButton
-          closeOnClick
-          autoClose={false}
-        />
+        <ImageProvider>
+          <RouterProvider router={router} />
+          <ToastContainer
+            theme='dark'
+            closeButton
+            closeOnClick
+            autoClose={false}
+          />
+        </ImageProvider>
       </AuthProvider>
     </ApolloProvider>
   </StrictMode>
