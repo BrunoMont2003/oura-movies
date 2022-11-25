@@ -2,16 +2,16 @@ import User from '../../../models/User'
 import jwt from 'jwt-simple'
 import config from '../../../configs/general.config'
 import bcrypt from 'bcrypt'
-import { GraphQLYogaError } from '@graphql-yoga/node'
+import { GraphQLError } from 'graphql'
 const userMutations = {
   async login (_, { email, password }) {
     const user = await User.findOne({ email })
     if (!user) {
-      throw new GraphQLYogaError('Invalid credentials')
+      throw new GraphQLError('Invalid credentials')
     }
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch) {
-      throw new GraphQLYogaError('Invalid credentials')
+      throw new GraphQLError('Invalid credentials')
     }
     const payload = {
       id: user.id,
@@ -22,10 +22,6 @@ const userMutations = {
     }
   },
   async signup (_, { name, email, password }) {
-    const user = await User.findOne({ email })
-    if (user) {
-      throw new GraphQLYogaError('Email in use')
-    }
     const encriptedPass = bcrypt.hashSync(password, 10)
     const newUser = new User({
       email,
@@ -35,7 +31,7 @@ const userMutations = {
     try {
       newUser.save()
     } catch (error) {
-      throw new GraphQLYogaError('Error creating user')
+      throw new GraphQLError('Error creating user')
     }
     const payload = {
       id: newUser.id,
@@ -48,7 +44,7 @@ const userMutations = {
   async deleteUser (_, { id }) {
     const user = await User.findById(id)
     if (!user) {
-      throw new GraphQLYogaError('User not found')
+      throw new GraphQLError('User not found')
     }
     await User.findByIdAndDelete(id)
       .select('-password')

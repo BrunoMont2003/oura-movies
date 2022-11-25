@@ -1,4 +1,3 @@
-import { GraphQLYogaError } from '@graphql-yoga/node'
 import MovieCatalog from '../../../models/MovieCatalog'
 import User from '../../../models/User'
 
@@ -23,11 +22,7 @@ const MovieCatalogQueries = {
     return movieCatalog
   },
   getFavoriteMovies: async (_, args, { currentUser }) => {
-    const userId = currentUser ? currentUser.id : null
-    if (!userId) {
-      throw new GraphQLYogaError('Not authenticated')
-    }
-    const user = await User.findById(userId)
+    const user = await User.findById(currentUser.id)
       .select('-password')
       .populate('favorites_movies')
     return user.favorites_movies
@@ -62,13 +57,8 @@ const MovieCatalogQueries = {
 
     return movies
   },
-  isFavoriteMovie: async (_, { id }, { currentUser }) => {
-    const userId = currentUser ? currentUser.id : null
-    if (!userId) {
-      throw new GraphQLYogaError('Not authenticated')
-    }
-    return currentUser.favorites_movies.includes(id)
-  },
+  isFavoriteMovie: async (_, { id }, { currentUser }) =>
+    currentUser.favorites_movies.includes(id),
   searchMovies: async (_, { query }, { currentUser }) => {
     const userId = currentUser ? currentUser.id : null
     const movies = await MovieCatalog.find({

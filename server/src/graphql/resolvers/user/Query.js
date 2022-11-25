@@ -1,4 +1,4 @@
-import { GraphQLYogaError } from '@graphql-yoga/node'
+import { GraphQLError } from 'graphql'
 import User from '../../../models/User'
 import jwt from 'jwt-simple'
 import config from '../../../configs/general.config'
@@ -16,7 +16,7 @@ const userQueries = {
     if (user) {
       return user
     } else {
-      throw new GraphQLYogaError('User not found')
+      throw new GraphQLError('User not found')
     }
   },
   me: async (_, { token }) => {
@@ -25,7 +25,7 @@ const userQueries = {
       const user = await User.findById(id)
       return user
     } catch (err) {
-      throw new GraphQLYogaError('Invalid token')
+      throw new GraphQLError('Invalid token')
     }
   }
 }
