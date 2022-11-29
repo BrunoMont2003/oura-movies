@@ -6,7 +6,7 @@ import Spinner from '../common/Spinner'
 function TrendingNow () {
   const { loading, error, data } = useQuery(GET_TRENDING_NOW)
   return (
-    <div className='w-screen p-5 relative lg:px-16'>
+    <div className='w-100 p-5 relative lg:px-16'>
       <h2 className='text-2xl font-bold'>Trending Now</h2>
       <section className='flex gap-2 overflow-x-scroll overflow-y-visible py-5' style={{ scrollbarWidth: 'none' }}>
         {loading

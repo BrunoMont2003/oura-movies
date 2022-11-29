@@ -6,7 +6,7 @@ import Spinner from '../common/Spinner'
 function Popular () {
   const { loading, error, data } = useQuery(GET_POPULAR_MOVIES)
   return (
-    <div className='w-screen p-5 relative lg:px-16'>
+    <div className='w-100 p-5 relative lg:px-16'>
       <h2 className='text-2xl font-bold'>Popular on Oura</h2>
       <section className='flex gap-2 overflow-x-scroll overflow-y-visible py-5' style={{ scrollbarWidth: 'none' }}>
         {loading
