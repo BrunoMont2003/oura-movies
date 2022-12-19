@@ -11,7 +11,7 @@ function DynamicImage ({ src, alt = 'some image', className = '' }) {
     <img
       src={url ?? src}
       alt={alt}
-      className={className + 'max-w-[200px] max-h-[300px]'}
+      className={className + 'w-[300px] h-[450px] object-cover'}
     />
   )
 }

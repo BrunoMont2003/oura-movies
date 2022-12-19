@@ -7,15 +7,17 @@ function MovieCard ({ movie }) {
   const navigate = useNavigate()
   return (
     <div
-      onClick={
-      () => navigate(`/movies/${movie.id}`)
-    }
-      className='card-movie-bg rounded flex items-end max-w-[200px] max-h-[300px]'
+      className='relative card-movie-bg rounded flex items-end w-[200px] h-[300px]'
       style={{
         backgroundImage: `url(${movie.poster_path})`
       }}
     >
-      <div className=' card-movie-menu p-5  flex-col gap-2'>
+      <div
+        onClick={() => navigate(`/movies/${movie.id}`)}
+        className='absolute w-full h-full rounded z-0'
+      />
+
+      <div className=' card-movie-menu p-5  flex-col gap-2 z-10'>
         <div className='flex gap-1'>
           <LikeButton movie={movie} />
           <Button
