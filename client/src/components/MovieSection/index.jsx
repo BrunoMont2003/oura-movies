@@ -7,8 +7,8 @@ import Button from '../common/Button'
 function MovieSection ({ movie = {} }) {
   return (
     <div className='flex flex-col lg:flex-row bg-teal-500 bg-opacity-25 w-full xl:max-w-[1500px] xl:py-16 px-10 md:px-16 py-10 gap-10 items-center'>
-      <figure className='w-[300px]'>
-        <img src={movie.poster_path} alt={movie.title} className='w-full rounded' />
+      <figure className='w-[300px] h-[450px]'>
+        <img src={movie.poster_path} alt={movie.title} className='w-full h-full object-contain rounded' />
       </figure>
       <article className='lg:mt-16 lg:max-w-[calc(100%-350px)]'>
         <h2 className='text-4xl font-bold'>{movie.title}</h2>
